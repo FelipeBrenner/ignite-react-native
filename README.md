@@ -1,10 +1,9 @@
-<h2 align="center">Ignite React Native</h2>
-
+<h3 align="center">Ignite React Native</h3>
 <p align="center">
   <img alt="logo" title="logo" src=".github/logo.svg" >
 </p>
 
-### Chapter I
+#### Chapter I
 
 - [myskills](https://github.com/FelipeBrenner/ignite-react-native/tree/master/myskills)
   - Fundamentos React Native

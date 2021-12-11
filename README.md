@@ -1,4 +1,8 @@
-# Ignite React Native
+<h2 align="center">Ignite React Native</h2>
+
+<p align="center">
+  <img alt="logo" title="logo" src=".github/logo.svg" >
+</p>
 
 ### Chapter I
 

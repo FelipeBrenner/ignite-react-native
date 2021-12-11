@@ -7,17 +7,29 @@ import {
   Platform,
   FlatList,
 } from 'react-native';
-import {ButtonAdd} from '../components/ButtonAdd';
+import {Button} from '../components/Button';
 import {CardSkill} from '../components/CardSkill';
+
+interface SkillData {
+  id: string;
+  name: string;
+}
 
 export function Home() {
   const [newSkill, setNewSkill] = useState('');
-  const [mySkills, setMySkills] = useState([]);
+  const [mySkills, setMySkills] = useState<SkillData[]>([]);
   const [greetings, setGreetings] = useState('');
 
   const handleNewAddSkill = () => {
-    setMySkills(oldState => [...oldState, newSkill]);
-    setNewSkill('');
+    if (newSkill) {
+      const data = {
+        id: String(new Date().getTime()),
+        name: newSkill,
+      };
+
+      setMySkills(oldState => [...oldState, data]);
+      setNewSkill('');
+    }
   };
 
   useEffect(() => {
@@ -45,14 +57,14 @@ export function Home() {
         onChangeText={setNewSkill}
       />
 
-      <ButtonAdd onPress={handleNewAddSkill} />
+      <Button title="Add" onPress={handleNewAddSkill} />
 
       <Text style={[styles.title, {marginVertical: 30}]}>My Skills</Text>
 
       <FlatList
         data={mySkills}
-        keyExtractor={item => item}
-        renderItem={({item}) => <CardSkill skill={item} />}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <CardSkill skill={item.name} />}
       />
     </SafeAreaView>
   );
@@ -62,7 +74,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#121015',
-    paddingHorizontal: 50,
+    paddingHorizontal: 30,
     paddingVertical: 70,
   },
   title: {

@@ -42,7 +42,7 @@ export function TaskItem({
   }
 
   function handleSubmitEditing() {
-    if (taskAlreadyExists(editTitle)) {
+    if (editTitle !== item.title && taskAlreadyExists(editTitle)) {
       handleCancelEditing();
       return;
     }

@@ -8,7 +8,7 @@ import { TodoInput } from "../components/TodoInput";
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  function handleAddTask(newTaskTitle: string) {
+  function taskAlreadyExists(newTaskTitle: string) {
     const alreadyExists = tasks.find(
       (title) => title.title === newTaskTitle.trim()
     );
@@ -18,8 +18,14 @@ export function Home() {
         "Task já cadastrada",
         "Você não pode cadastrar uma task com o mesmo nome"
       );
-      return;
+      return true;
     }
+
+    return false;
+  }
+
+  function handleAddTask(newTaskTitle: string) {
+    if (taskAlreadyExists(newTaskTitle)) return;
 
     const data = {
       id: new Date().getTime(),
@@ -82,6 +88,7 @@ export function Home() {
         toggleTaskDone={handleToggleTaskDone}
         removeTask={handleRemoveTask}
         editTask={handleEditTask}
+        taskAlreadyExists={taskAlreadyExists}
       />
     </View>
   );

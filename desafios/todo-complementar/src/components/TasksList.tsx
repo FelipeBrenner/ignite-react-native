@@ -21,6 +21,7 @@ interface TasksListProps {
   toggleTaskDone: (id: number) => void;
   removeTask: (id: number) => void;
   editTask: (task: EditTask) => void;
+  taskAlreadyExists: (title: string) => boolean;
 }
 
 export function TasksList({
@@ -28,6 +29,7 @@ export function TasksList({
   toggleTaskDone,
   removeTask,
   editTask,
+  taskAlreadyExists,
 }: TasksListProps) {
   return (
     <FlatList
@@ -43,6 +45,8 @@ export function TasksList({
               item={item}
               removeTask={removeTask}
               toggleTaskDone={toggleTaskDone}
+              editTask={editTask}
+              taskAlreadyExists={taskAlreadyExists}
             />
           </ItemWrapper>
         );

@@ -9,3 +9,11 @@
   - Fundamentos React Native
 - [Desafio 01 - Conceitos do React Native](https://github.com/FelipeBrenner/ignite-react-native/tree/master/desafios/todo)
 - [Desafio 02 - Adicionando edição e alertas](https://github.com/FelipeBrenner/ignite-react-native/tree/master/desafios/todo-complementar)
+
+#### Chapter II
+
+- [gofinances](https://github.com/FelipeBrenner/ignite-react-native/tree/master/gofinances)
+  - Expo e Styled Components
+  - Formulários e Navegação
+  - Async Storage
+  - Contextos e Autenticação

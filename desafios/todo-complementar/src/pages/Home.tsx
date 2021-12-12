@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
 import { Header } from "../components/Header";
-import { Task, TasksList } from "../components/TasksList";
+import { Task, TasksList, EditTask } from "../components/TasksList";
 import { TodoInput } from "../components/TodoInput";
 
 export function Home() {
@@ -31,7 +31,6 @@ export function Home() {
   }
 
   function handleToggleTaskDone(id: number) {
-    //TODO - toggle task done if exists
     const updatedTasks = tasks.map((task) => ({ ...task }));
 
     const foundTask = updatedTasks.find((task) => task.id === id);
@@ -60,6 +59,18 @@ export function Home() {
     );
   }
 
+  function handleEditTask(editTask: EditTask) {
+    const updatedTasks = tasks.map((task) => ({ ...task }));
+
+    const foundTask = updatedTasks.find((task) => task.id === editTask.taskId);
+
+    if (!foundTask) return;
+
+    foundTask.title = editTask.taskNewTitle;
+
+    setTasks(updatedTasks);
+  }
+
   return (
     <View style={styles.container}>
       <Header tasksCounter={tasks.length} />
@@ -70,6 +81,7 @@ export function Home() {
         tasks={tasks}
         toggleTaskDone={handleToggleTaskDone}
         removeTask={handleRemoveTask}
+        editTask={handleEditTask}
       />
     </View>
   );

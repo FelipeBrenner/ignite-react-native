@@ -3,7 +3,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
 
 export const Container = styled(RectButton).attrs({
-  activeOpacity: 0.8,
+  activeOpacity: 0.2,
 })`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.secundary};

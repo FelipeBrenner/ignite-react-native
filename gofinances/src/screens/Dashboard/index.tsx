@@ -20,8 +20,11 @@ import {
   TransactionsList,
   Title,
   LogoutButton,
+  LoadContainer,
 } from "./styles";
 import { useFocusEffect } from "@react-navigation/native";
+import { ActivityIndicator } from "react-native";
+import { useTheme } from "styled-components";
 
 export interface TransactionListProps extends TransactionCardProps {
   id: string;
@@ -38,10 +41,13 @@ interface HightlightData {
 }
 
 export function Dashboard() {
+  const [isLoading, setIsLoading] = useState(true);
   const [transactions, setTransactions] = useState<TransactionListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HightlightData>(
     {} as HightlightData
   );
+
+  const theme = useTheme();
 
   async function loadTransactions() {
     const dataKey = "@gofinances:transactions";
@@ -105,6 +111,8 @@ export function Dashboard() {
         }),
       },
     });
+
+    setIsLoading(false);
   }
 
   useEffect(() => {
@@ -119,51 +127,61 @@ export function Dashboard() {
 
   return (
     <Container>
-      <Header>
-        <UserWrapper>
-          <UserInfo>
-            <Photo source={{ uri: "https://github.com/felipebrenner.png" }} />
-            <User>
-              <UserGreeting>Olá,</UserGreeting>
-              <UserName>Felipe</UserName>
-            </User>
-          </UserInfo>
-          <LogoutButton onPress={() => {}}>
-            <Icon name="power" />
-          </LogoutButton>
-        </UserWrapper>
-      </Header>
+      {isLoading ? (
+        <LoadContainer>
+          <ActivityIndicator color={theme.colors.primary} size="large" />
+        </LoadContainer>
+      ) : (
+        <>
+          <Header>
+            <UserWrapper>
+              <UserInfo>
+                <Photo
+                  source={{ uri: "https://github.com/felipebrenner.png" }}
+                />
+                <User>
+                  <UserGreeting>Olá,</UserGreeting>
+                  <UserName>Felipe</UserName>
+                </User>
+              </UserInfo>
+              <LogoutButton onPress={() => {}}>
+                <Icon name="power" />
+              </LogoutButton>
+            </UserWrapper>
+          </Header>
 
-      <HighlightCards>
-        <HighlightCard
-          type="up"
-          title="Entradas"
-          amount={highlightData.entries?.amount}
-          lastTransaction="Última entrada dia 13 de abril"
-        />
-        <HighlightCard
-          type="down"
-          title="Saídas"
-          amount={highlightData.expensives?.amount}
-          lastTransaction="Última saída dia 03 de abril"
-        />
-        <HighlightCard
-          type="total"
-          title="Total"
-          amount={highlightData.total?.amount}
-          lastTransaction="01 à 16 de abril"
-        />
-      </HighlightCards>
+          <HighlightCards>
+            <HighlightCard
+              type="up"
+              title="Entradas"
+              amount={highlightData.entries?.amount}
+              lastTransaction="Última entrada dia 13 de abril"
+            />
+            <HighlightCard
+              type="down"
+              title="Saídas"
+              amount={highlightData.expensives?.amount}
+              lastTransaction="Última saída dia 03 de abril"
+            />
+            <HighlightCard
+              type="total"
+              title="Total"
+              amount={highlightData.total?.amount}
+              lastTransaction="01 à 16 de abril"
+            />
+          </HighlightCards>
 
-      <Transactions>
-        <Title>Listagem</Title>
+          <Transactions>
+            <Title>Listagem</Title>
 
-        <TransactionsList
-          data={transactions}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <TransactionCard data={item} />}
-        />
-      </Transactions>
+            <TransactionsList
+              data={transactions}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => <TransactionCard data={item} />}
+            />
+          </Transactions>
+        </>
+      )}
     </Container>
   );
 }

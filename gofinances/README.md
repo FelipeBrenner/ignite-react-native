@@ -6,6 +6,7 @@
 - Styled Components
 - [React Hook Form](https://react-hook-form.com/)
 - [React Navigation](https://reactnavigation.org/)
+- Login Social Google e Apple
 
 ## 💻 Projeto
 

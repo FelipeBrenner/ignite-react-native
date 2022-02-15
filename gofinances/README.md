@@ -3,10 +3,13 @@
 - React Native
 - TypeScript
 - [Expo](https://expo.dev/) (framework para rodar os códigos em React Native mais tranquilamente, dispensando a complexidade de parametrização de ambiente que se tem com por exemplo os emuladores Android Studio e Xcode)
-- Styled Components
+  - [AsyncStorage](https://docs.expo.dev/versions/v44.0.0/sdk/async-storage/)
+  - [AuthSession](https://docs.expo.dev/versions/latest/sdk/auth-session/)
+    - [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow) para acessar API do Google
+  - [AppleAuthentication](https://docs.expo.dev/versions/v44.0.0/sdk/apple-authentication/)
+- [Styled Components](https://styled-components.com/)
 - [React Hook Form](https://react-hook-form.com/)
 - [React Navigation](https://reactnavigation.org/)
-- Login Social Google e Apple
 
 ## 💻 Projeto
 

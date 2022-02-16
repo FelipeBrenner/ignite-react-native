@@ -12,7 +12,7 @@ import "intl";
 import "intl/locale-data/jsonp/pt-BR";
 
 import theme from "./src/global/styles/theme";
-import { AuthProvider } from "./src/hooks/auth";
+import { AuthProvider, useAuth } from "./src/hooks/auth";
 import { Routes } from "./src/routes";
 
 export default function App() {
@@ -22,7 +22,9 @@ export default function App() {
     Poppins_700Bold,
   });
 
-  if (!fontsLodaded) {
+  const { userStorageLoading } = useAuth();
+
+  if (!fontsLodaded || userStorageLoading) {
     return <AppLoading />;
   }
 

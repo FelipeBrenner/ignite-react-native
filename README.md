@@ -18,3 +18,4 @@
   - Async Storage
   - Contextos e Autenticação
 - [Desafio 01 - SavePass](https://github.com/FelipeBrenner/ignite-react-native/tree/master/desafios/savepass)
+- [Desafio 02 - Login social com a Twitch](https://github.com/FelipeBrenner/ignite-react-native/tree/master/desafios/stream-data-twitch)

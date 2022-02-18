@@ -24,7 +24,9 @@ import {
   Price,
   About,
   Accessories,
+  Footer,
 } from "./styles";
+import { Button } from "../../components/Button";
 
 export function CarDetails() {
   return (
@@ -65,9 +67,17 @@ export function CarDetails() {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur
           facilis, dolor assumenda voluptatum incidunt soluta a voluptate rerum
           maxime repudiandae inventore quisquam impedit sapiente qui cumque
-          explicabo voluptatibus quis nulla!
+          explicabo voluptatibus quis nulla! Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Aspernatur facilis, dolor assumenda
+          voluptatum incidunt soluta a voluptate rerum maxime repudiandae
+          inventore quisquam impedit sapiente qui cumque explicabo voluptatibus
+          quis nulla!
         </About>
       </Content>
+
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   );
 }

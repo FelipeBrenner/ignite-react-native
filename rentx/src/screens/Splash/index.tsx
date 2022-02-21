@@ -1,19 +1,27 @@
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { useEffect } from "react";
 import Animated, {
   Extrapolate,
   interpolate,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { RootStackParamList } from "../../@types/navigation";
 
 import BrandSvg from "../../assets/brand.svg";
 import LogoSvg from "../../assets/logo.svg";
 
 import { Container } from "./styles";
 
+type SplashNavigationProp = StackNavigationProp<RootStackParamList, "Splash">;
+
 export function Splash() {
   const splashAnimation = useSharedValue(0);
+
+  const navigation = useNavigation<SplashNavigationProp>();
 
   const brandStyle = useAnimatedStyle(() => {
     return {
@@ -47,8 +55,15 @@ export function Splash() {
     };
   });
 
+  function startApp() {
+    navigation.navigate("Home");
+  }
+
   useEffect(() => {
-    splashAnimation.value = withTiming(50, { duration: 1000 });
+    splashAnimation.value = withTiming(50, { duration: 1000 }, () => {
+      "worklet";
+      runOnJS(startApp)();
+    });
   }, []);
 
   return (

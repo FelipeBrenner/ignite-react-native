@@ -58,7 +58,7 @@ export function SchedulingDetails() {
   }
 
   function handleBack() {
-    navigation.navigate("Scheduling");
+    navigation.goBack();
   }
 
   return (

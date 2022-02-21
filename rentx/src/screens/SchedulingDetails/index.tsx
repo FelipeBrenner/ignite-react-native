@@ -40,14 +40,31 @@ import {
 import { Button } from "../../components/Button";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../@types/navigation";
+
+type SchedulingDetailsNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "SchedulingComplete"
+>;
 
 export function SchedulingDetails() {
   const theme = useTheme();
+  const navigation = useNavigation<SchedulingDetailsNavigationProp>();
+
+  function handleConfirmRental() {
+    navigation.navigate("SchedulingComplete");
+  }
+
+  function handleBack() {
+    navigation.navigate("Scheduling");
+  }
 
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => {}} />
+        <BackButton onPress={handleBack} />
       </Header>
 
       <CarImages>
@@ -114,7 +131,11 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button
+          title="Alugar agora"
+          color={theme.colors.success}
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

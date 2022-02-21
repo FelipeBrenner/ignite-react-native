@@ -17,11 +17,28 @@ import {
   Footer,
 } from "./styles";
 import { StatusBar } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Button } from "../../components/Button";
 import { Calendar } from "../../components/Calendar";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../@types/navigation";
+
+type SchedulingNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "Scheduling"
+>;
 
 export function Scheduling() {
   const theme = useTheme();
+  const navigation = useNavigation<SchedulingNavigationProp>();
+
+  function handleConfirmRental() {
+    navigation.navigate("SchedulingDetails");
+  }
+
+  function handleBack() {
+    navigation.navigate("CarDetails");
+  }
 
   return (
     <Container>
@@ -31,7 +48,7 @@ export function Scheduling() {
           translucent
           backgroundColor="transparent"
         />
-        <BackButton onPress={() => {}} color={theme.colors.shape} />
+        <BackButton onPress={handleBack} color={theme.colors.shape} />
 
         <Title>
           Escolha uma{"\n"}
@@ -62,7 +79,7 @@ export function Scheduling() {
         <Calendar />
       </Content>
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );

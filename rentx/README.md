@@ -6,6 +6,7 @@
 - [Styled Components](https://styled-components.com/)
 - [React Navigation](https://reactnavigation.org/)
 - [Axios](https://axios-http.com/)
+- [Reanimated](https://docs.swmansion.com/react-native-reanimated/)
 
 ## 💻 Projeto
 

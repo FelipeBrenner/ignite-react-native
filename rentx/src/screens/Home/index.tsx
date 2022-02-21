@@ -28,6 +28,7 @@ import Animated, {
   withSpring,
 } from "react-native-reanimated";
 import { PanGestureHandler, RectButton } from "react-native-gesture-handler";
+import { LoadAnimation } from "../../components/LoadAnimation";
 
 type HomeNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
@@ -105,7 +106,7 @@ export function Home() {
         </HeaderContent>
       </Header>
       {loading ? (
-        <Load />
+        <LoadAnimation />
       ) : (
         <CarList
           data={cars}

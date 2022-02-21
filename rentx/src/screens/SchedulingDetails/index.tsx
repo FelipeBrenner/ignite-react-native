@@ -40,7 +40,7 @@ import {
 import { Button } from "../../components/Button";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useTheme } from "styled-components";
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../@types/navigation";
 
@@ -48,6 +48,8 @@ type SchedulingDetailsNavigationProp = StackNavigationProp<
   RootStackParamList,
   "SchedulingComplete"
 >;
+
+type SchedulingRouteProp = RouteProp<RootStackParamList, "SchedulingComplete">;
 
 export function SchedulingDetails() {
   const theme = useTheme();

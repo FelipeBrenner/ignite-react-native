@@ -1,4 +1,7 @@
 import React from "react";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+
 import { Accessory } from "../../components/Accessory";
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
@@ -7,7 +10,6 @@ import {
   Container,
   Header,
   CarImages,
-  Content,
   Details,
   Description,
   Brand,
@@ -20,10 +22,19 @@ import {
   Footer,
 } from "./styles";
 import { Button } from "../../components/Button";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+
 import { RootStackParamList } from "../../@types/navigation";
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
+import Animated, {
+  Extrapolate,
+  interpolate,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useSharedValue,
+} from "react-native-reanimated";
+import { StatusBar, StyleSheet } from "react-native";
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import { useTheme } from "styled-components";
 
 type CarDetailsNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -37,6 +48,30 @@ export function CarDetails() {
   const route = useRoute<CarDetailsRouteProp>();
   const { car } = route.params;
 
+  const theme = useTheme();
+
+  const scrollY = useSharedValue(0);
+  const scrollHandler = useAnimatedScrollHandler((event) => {
+    scrollY.value = event.contentOffset.y;
+  });
+
+  const headerStyleAnimation = useAnimatedStyle(() => {
+    return {
+      height: interpolate(
+        scrollY.value,
+        [0, 200],
+        [200, 80],
+        Extrapolate.CLAMP
+      ),
+    };
+  });
+
+  const sliderCarsStyleAnimation = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(scrollY.value, [0, 150], [1, 0], Extrapolate.CLAMP),
+    };
+  });
+
   function handleConfirmRental() {
     navigation.navigate("Scheduling", { car });
   }
@@ -47,15 +82,38 @@ export function CarDetails() {
 
   return (
     <Container>
-      <Header>
-        <BackButton onPress={handleBack} />
-      </Header>
+      <StatusBar
+        barStyle="dark-content"
+        translucent
+        backgroundColor="transparent"
+      />
 
-      <CarImages>
-        <ImageSlider imagesUrl={car.photos} />
-      </CarImages>
+      <Animated.View
+        style={[
+          headerStyleAnimation,
+          styles.header,
+          { backgroundColor: theme.colors.background_secundary },
+        ]}
+      >
+        <Header>
+          <BackButton onPress={handleBack} />
+        </Header>
+        <CarImages>
+          <Animated.View style={[sliderCarsStyleAnimation]}>
+            <ImageSlider imagesUrl={car.photos} />
+          </Animated.View>
+        </CarImages>
+      </Animated.View>
 
-      <Content>
+      <Animated.ScrollView
+        contentContainerStyle={{
+          paddingHorizontal: 24,
+          paddingTop: getStatusBarHeight() + 160,
+        }}
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+      >
         <Details>
           <Description>
             <Brand>{car.brand}</Brand>
@@ -79,7 +137,7 @@ export function CarDetails() {
         </Accessories>
 
         <About>{car.about}</About>
-      </Content>
+      </Animated.ScrollView>
 
       <Footer>
         <Button
@@ -90,3 +148,14 @@ export function CarDetails() {
     </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  header: {
+    position: "absolute",
+    overflow: "hidden",
+    zIndex: 1,
+  },
+  back: {
+    marginTop: 24,
+  },
+});

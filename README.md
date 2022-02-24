@@ -25,3 +25,4 @@
 - [RentX](https://github.com/FelipeBrenner/ignite-react-native/tree/master/rentx)
   - Consumindo API
   - Animações
+- [Desafio 01 - GitHub Explorer](https://github.com/FelipeBrenner/ignite-react-native/tree/master/desafios/github-explorer)

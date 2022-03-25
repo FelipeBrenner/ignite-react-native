@@ -12,23 +12,47 @@ import { TextInputProps } from "react-native";
 
 interface Props extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>["name"];
+  value?: string;
 }
 
-export function PasswordInput({ iconName, ...rest }: Props) {
+export function PasswordInput({ iconName, value, ...rest }: Props) {
   const [isPasswordVisible, setPasswordVisible] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+
   const theme = useTheme();
+
+  function handleInputFocus() {
+    setIsFocused(true);
+  }
+
+  function handleInputBlur() {
+    setIsFocused(false);
+    setIsFilled(!!value);
+  }
 
   const handlePasswordVisibilityChange = () => {
     setPasswordVisible((prevState) => !prevState);
   };
 
   return (
-    <Container>
+    <Container isFocused={isFocused}>
       <IconContainer>
-        <Feather name={iconName} size={24} color={theme.colors.text_detail} />
+        <Feather
+          name={iconName}
+          size={24}
+          color={
+            isFocused || isFilled ? theme.colors.main : theme.colors.text_detail
+          }
+        />
       </IconContainer>
 
-      <InputText {...rest} secureTextEntry={isPasswordVisible} />
+      <InputText
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        secureTextEntry={isPasswordVisible}
+        {...rest}
+      />
 
       <ChangePasswordVisibilityButton onPress={handlePasswordVisibilityChange}>
         <IconContainer>

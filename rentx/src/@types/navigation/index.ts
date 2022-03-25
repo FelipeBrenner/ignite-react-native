@@ -4,6 +4,7 @@ import { CarDTO } from "../../dtos/CarDTO";
 export type RootStackParamList = {
   Splash: undefined;
   SignIn: undefined;
+  SignUpFirstStep: undefined;
   Home: undefined;
   CarDetails: { car: CarDTO };
   Scheduling: { car: CarDTO };

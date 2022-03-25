@@ -13,12 +13,21 @@ import { Input } from "../../components/Input";
 import { PasswordInput } from "../../components/PasswordInput";
 
 import { Container, Footer, Header, SubTitle, Form, Title } from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../@types/navigation";
+
+type SchedulingCompleteNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "SignIn"
+>;
 
 export function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const theme = useTheme();
+  const navigation = useNavigation<SchedulingCompleteNavigationProp>();
 
   async function handleSignIn() {
     try {
@@ -40,6 +49,10 @@ export function SignIn() {
         );
       }
     }
+  }
+
+  function handleNewAccount() {
+    navigation.navigate("SignUpFirstStep");
   }
 
   return (
@@ -81,8 +94,7 @@ export function SignIn() {
             <Button title="Login" onPress={handleSignIn} loading={false} />
             <Button
               title="Criar conta gratuita"
-              onPress={() => {}}
-              enabled={false}
+              onPress={handleNewAccount}
               loading={false}
               color={theme.colors.background_secundary}
               light

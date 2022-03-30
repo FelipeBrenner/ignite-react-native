@@ -17,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../@types/navigation";
 
-type SchedulingCompleteNavigationProp = StackNavigationProp<
+type ConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "SignIn"
 >;
@@ -27,7 +27,7 @@ export function SignIn() {
   const [password, setPassword] = useState("");
 
   const theme = useTheme();
-  const navigation = useNavigation<SchedulingCompleteNavigationProp>();
+  const navigation = useNavigation<ConfirmationNavigationProp>();
 
   async function handleSignIn() {
     try {

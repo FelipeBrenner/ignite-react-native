@@ -24,7 +24,7 @@ import {
   FormTitle,
 } from "./styles";
 
-type SchedulingCompleteNavigationProp = StackNavigationProp<
+type ConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "SignUpSecondStep"
 >;
@@ -35,7 +35,7 @@ export function SignUpSecondStep() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const navigation = useNavigation<SchedulingCompleteNavigationProp>();
+  const navigation = useNavigation<ConfirmationNavigationProp>();
   const route = useRoute<SchedulingRouteProp>();
   const theme = useTheme();
 
@@ -53,6 +53,12 @@ export function SignUpSecondStep() {
     if (password !== passwordConfirm) {
       return Alert.alert("As senhas não são iguais");
     }
+
+    navigation.navigate("Confirmation", {
+      title: "Conta criada!",
+      message: `Agora é só fazer login\ne aproveitar.`,
+      nextScreenRoute: "SignIn",
+    });
   }
 
   return (

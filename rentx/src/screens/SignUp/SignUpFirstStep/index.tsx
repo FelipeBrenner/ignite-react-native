@@ -24,7 +24,7 @@ import {
   FormTitle,
 } from "./styles";
 
-type SchedulingCompleteNavigationProp = StackNavigationProp<
+type ConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
   "SignUpFirstStep"
 >;
@@ -34,7 +34,7 @@ export function SignUpFirstStep() {
   const [email, setEmail] = useState("");
   const [driverLicense, setDriverLicense] = useState("");
 
-  const navigation = useNavigation<SchedulingCompleteNavigationProp>();
+  const navigation = useNavigation<ConfirmationNavigationProp>();
 
   function handleBack() {
     navigation.goBack();

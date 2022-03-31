@@ -100,7 +100,7 @@ export function CarDetails() {
         </Header>
         <CarImages>
           <Animated.View style={[sliderCarsStyleAnimation]}>
-            <ImageSlider imagesUrl={car.photos} />
+            <ImageSlider images={car.photos} />
           </Animated.View>
         </CarImages>
       </Animated.View>
@@ -121,8 +121,8 @@ export function CarDetails() {
           </Description>
 
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
 

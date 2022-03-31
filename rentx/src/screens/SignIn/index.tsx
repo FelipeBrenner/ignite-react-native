@@ -16,6 +16,7 @@ import { Container, Footer, Header, SubTitle, Form, Title } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../@types/navigation";
+import { useAuth } from "../../hooks/auth";
 
 type ConfirmationNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -28,6 +29,7 @@ export function SignIn() {
 
   const theme = useTheme();
   const navigation = useNavigation<ConfirmationNavigationProp>();
+  const { signIn } = useAuth();
 
   async function handleSignIn() {
     try {
@@ -39,6 +41,8 @@ export function SignIn() {
       });
 
       await schema.validate({ email, password });
+
+      signIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         Alert.alert("Opa", error.message);

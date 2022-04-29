@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Keyboard, KeyboardAvoidingView } from "react-native";
+import { Alert, Keyboard, KeyboardAvoidingView } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { useTheme } from "styled-components";
 import * as ImagePicker from "expo-image-picker";
+import * as Yup from "yup";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
@@ -25,10 +26,11 @@ import {
   Section,
 } from "./styles";
 import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
 import { useAuth } from "../../hooks/auth";
 
 export function Profile() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, updatedUser } = useAuth();
 
   const [option, setOption] = useState<"dataEdit" | "passwordEdit">("dataEdit");
   const [avatar, setAvatar] = useState(user.avatar);
@@ -60,6 +62,33 @@ export function Profile() {
 
     if (result.uri) {
       setAvatar(result.uri);
+    }
+  };
+
+  const handleProfileUpdate = async () => {
+    try {
+      const schema = Yup.object().shape({
+        driverLicense: Yup.string().required("CNH é obrigatória"),
+        name: Yup.string().required("Nome é obrigatório"),
+      });
+
+      const data = { name, driverLicense };
+      await schema.validate(data);
+
+      await updatedUser({
+        ...user,
+        avatar,
+        name,
+        driver_license: driverLicense,
+      });
+
+      Alert.alert("Perfil atualizado");
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        Alert.alert("Opa", error.message);
+      }
+
+      Alert.alert("Não foi possível atualizar o perfil");
     }
   };
 
@@ -131,6 +160,8 @@ export function Profile() {
                 <Input iconName="lock" placeholder="Repetir senha" />
               </Section>
             )}
+
+            <Button title="Salvar alterações" onPress={handleProfileUpdate} />
           </Content>
         </Container>
       </TouchableWithoutFeedback>

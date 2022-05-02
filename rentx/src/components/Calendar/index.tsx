@@ -11,8 +11,8 @@ import { useTheme } from "styled-components";
 import { generateInterval } from "./generateInterval";
 import { ptBR } from "./localeConfig";
 
-LocaleConfig.locales["pt-br"] = { ptBR };
-LocaleConfig.defaultLocal = "pt-br";
+LocaleConfig.locales["pt-br"] = ptBR;
+LocaleConfig.defaultLocale = "pt-br";
 
 interface MarkedDateProps {
   [date: string]: {

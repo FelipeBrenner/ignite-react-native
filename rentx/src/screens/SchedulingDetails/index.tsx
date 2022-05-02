@@ -79,27 +79,28 @@ export function SchedulingDetails() {
   const rentTotal = Number(dates.length * car.price);
 
   async function handleConfirmRental() {
-    try {
-      setLoading(true);
+    setLoading(true);
 
-      await api.post("rentals", {
+    await api
+      .post("/rentals", {
         user_id: 1,
         car_id: car,
         start_date: new Date(dates[0]),
         end_date: new Date(dates[dates.length - 1]),
         total: rentTotal,
+      })
+      .then(() => {
+        navigation.navigate("Confirmation", {
+          title: "Carro alugado!",
+          message: `Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automóvel.`,
+          nextScreenRoute: "Home",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert("Não foi possível confirmar o agendamento.");
+        setLoading(false);
       });
-
-      navigation.navigate("Confirmation", {
-        title: "Carro alugado!",
-        message: `Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automóvel.`,
-        nextScreenRoute: "Home",
-      });
-    } catch (error) {
-      console.log(error);
-      Alert.alert("Não foi possível confirmar o agendamento.");
-      setLoading(false);
-    }
   }
 
   function handleBack() {

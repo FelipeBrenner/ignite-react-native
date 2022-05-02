@@ -91,7 +91,6 @@ export function Home() {
       try {
         const carCollection = database.get<ModelCar>("cars");
         const cars = await carCollection.query().fetch();
-
         if (isMounted) {
           setCars(cars);
         }
@@ -111,7 +110,7 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    if (netInfo.isConnected === true) {
+    if (netInfo.isConnected) {
       offlineSynchronize();
     }
   }, [netInfo.isConnected]);

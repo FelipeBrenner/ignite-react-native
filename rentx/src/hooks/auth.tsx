@@ -106,8 +106,8 @@ function AuthProvider({ children }: AuthProviderProps) {
           "Authorization"
         ] = `Bearer ${userData.token}`;
         setData(userData);
-        setLoading(false);
       }
+      setLoading(false);
     };
 
     loadUserData();

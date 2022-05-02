@@ -11,6 +11,7 @@
   - [Stack](https://reactnavigation.org/docs/stack-navigator/)
 - [Axios](https://axios-http.com/)
 - [Watermelon DB](https://github.com/Nozbe/WatermelonDB) (banco de dados focado em performance, escalabilidade e possui uma boa arquitetura para offline-first, rastreamento de novos registros, dos que mudaram e dos que foram deletados)
+- [Fast Image](https://github.com/DylanVann/react-native-fast-image) (biblioteca que armazena as imagens em cache)
 
 ## 💻 Projeto
 

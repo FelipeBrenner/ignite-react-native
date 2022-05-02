@@ -2,6 +2,7 @@ import styled, { css } from "styled-components/native";
 import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import { RFValue } from "react-native-responsive-fontsize";
+import FastImage from "react-native-fast-image";
 
 interface OptionProps {
   active: boolean;
@@ -47,7 +48,7 @@ export const PhotoContainer = styled.View`
   margin-top: 48px;
 `;
 
-export const Photo = styled.Image`
+export const Photo = styled(FastImage)`
   width: 180px;
   height: 180px;
   border-radius: 90px;

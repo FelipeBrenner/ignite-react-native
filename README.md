@@ -26,3 +26,8 @@
   - Consumindo API
   - Animações
 - [Desafio 01 - GitHub Explorer](https://github.com/FelipeBrenner/ignite-react-native/tree/master/desafios/github-explorer)
+
+#### Chapter IV
+
+- [RentX](https://github.com/FelipeBrenner/ignite-react-native/tree/master/rentx)
+  - Offline First

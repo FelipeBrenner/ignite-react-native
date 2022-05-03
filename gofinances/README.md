@@ -11,6 +11,7 @@
 - [React Hook Form](https://react-hook-form.com/)
 - [React Navigation](https://reactnavigation.org/)
 - [React Native Testing Library](https://callstack.github.io/react-native-testing-library/)
+- [Jest Styled Components](https://github.com/styled-components/jest-styled-components)
 
 ## 💻 Projeto
 

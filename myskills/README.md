@@ -10,3 +10,9 @@
 <p align="center">
   <img alt="print" title="Print App" src="./.github/print.png" width ="300"/>
 </p>
+
+## ⚙️ Teste E2E
+
+<p align="center">
+  <img alt="test" title="Gif Test" src="./.github/test.gif" width ="1000"/>
+</p>

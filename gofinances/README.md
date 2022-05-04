@@ -26,4 +26,10 @@ O GoFinances é uma aplicação de controle financeiro semelhante ao [dtmoney](h
   <img alt="gif2" title="Gif 2 App" src="./.github/gif2.gif" width ="250"/>
 </p>
 
+## ⚙️ Testes Unitários e Integração
+
+<p align="center">
+  <img alt="test" title="Gif Test" src="./.github/test.gif" width ="1000"/>
+</p>
+
 ## 🖥️ [Figma](https://www.figma.com/file/vThJ6qrb4HDT6RfO5sJGu0/GoFinances-Ignite?node-id=0%3A1)

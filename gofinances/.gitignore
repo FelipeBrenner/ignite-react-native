@@ -57,3 +57,6 @@ dist/
 
 # Manual
 .env
+
+# Jest
+coverage

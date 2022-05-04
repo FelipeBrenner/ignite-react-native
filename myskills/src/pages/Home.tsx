@@ -50,7 +50,9 @@ export function Home() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Welcome, Brenner</Text>
+      <Text style={styles.title} testID="welcome">
+        Welcome, Brenner
+      </Text>
       <Text style={styles.greetings}>{greetings}</Text>
 
       <TextInput

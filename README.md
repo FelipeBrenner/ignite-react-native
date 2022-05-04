@@ -31,3 +31,10 @@
 
 - [RentX](https://github.com/FelipeBrenner/ignite-react-native/tree/master/rentx)
   - Offline First
+
+#### Chapter V
+
+- [GoFinances](https://github.com/FelipeBrenner/ignite-react-native/tree/master/gofinances)
+  - Testes Unitários e Integração
+- [MySkills](https://github.com/FelipeBrenner/ignite-react-native/tree/master/myskills)
+  - Teste E2E

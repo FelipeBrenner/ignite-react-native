@@ -35,6 +35,8 @@
 #### Chapter V
 
 - [GoFinances](https://github.com/FelipeBrenner/ignite-react-native/tree/master/gofinances)
-  - Testes Unitários e Integração
+  - Testes Unitários e Integração (reforçado conteúdos estudados [neste projeto](https://github.com/FelipeBrenner/ignite-reactjs-ignews))
 - [MySkills](https://github.com/FelipeBrenner/ignite-react-native/tree/master/myskills)
   - Teste E2E
+- [PerformanceApp](https://github.com/FelipeBrenner/ignite-react-native/tree/master/performanceapp)
+  - Performando Apps (reforçado conteúdos estudados [neste projeto](https://github.com/FelipeBrenner/ignite-reactjs-perfreact))

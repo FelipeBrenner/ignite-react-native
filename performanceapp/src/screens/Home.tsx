@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import {
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import React, { useCallback, useState } from "react";
+import { Button, StyleSheet, Text, TextInput, View } from "react-native";
 import { FriendList } from "../components/FriendList";
+
+interface Data {
+  id: number;
+  name: string;
+  likes: number;
+}
 
 export function Home() {
   const [name, setName] = useState("");
@@ -16,8 +15,20 @@ export function Home() {
   async function handleSearch() {
     const response = await fetch(`http://172.17.0.1:3333/friends?q=${name}`);
     const data = await response.json();
-    setFriends(data);
+
+    const formattedData = data.map((item: Data) => {
+      return {
+        ...item,
+        online: `Online em: ${new Date().getHours()}:${new Date().getMinutes()}`,
+      };
+    });
+
+    setFriends(formattedData);
   }
+
+  const handleUnfollow = useCallback(() => {
+    console.log("unfollow user");
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -31,9 +42,7 @@ export function Home() {
 
       <Button title="Buscar" onPress={handleSearch} />
 
-      <ScrollView style={styles.list}>
-        <FriendList data={friends} />
-      </ScrollView>
+      <FriendList data={friends} unfollow={handleUnfollow} />
     </View>
   );
 }

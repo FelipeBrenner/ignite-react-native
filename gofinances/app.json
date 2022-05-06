@@ -3,9 +3,11 @@
     "name": "gofinances",
     "slug": "gofinances",
     "version": "1.0.0",
-    "icon": "./assets/logo.png",
+    "icon": "./assets/icon.png",
     "scheme": "gofinances",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.gofinances",
       "buildNumber": "1.0.0"
@@ -13,6 +15,13 @@
     "android": {
       "package": "com.gofinances",
       "versionCode": 1
-    }
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4299E1"
+    },
+    "description": "",
+    "githubUrl": "https://github.com/FelipeBrenner/ignite-react-native/tree/master/gofinances"
   }
 }

@@ -40,3 +40,10 @@
   - Teste E2E
 - [PerformanceApp](https://github.com/FelipeBrenner/ignite-react-native/tree/master/performanceapp)
   - Performando Apps (reforçado conteúdos estudados [neste projeto](https://github.com/FelipeBrenner/ignite-reactjs-perfreact))
+
+#### Chapter VI
+
+- Publicação de Apps
+  - [MySkills](https://github.com/FelipeBrenner/ignite-react-native/tree/master/myskills)
+  - [GoFinances](https://github.com/FelipeBrenner/ignite-react-native/tree/master/gofinances)
+- [Desafio 01 - Deploy do GoFinances](https://expo.dev/@felipebrenner/gofinances)

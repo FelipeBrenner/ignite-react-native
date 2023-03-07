@@ -1,11 +1,14 @@
-import React, { FC } from "react";
-import { fireEvent, render, waitFor } from "@testing-library/react-native";
-import { ThemeProvider } from "styled-components/native";
-import theme from "../../global/styles/theme";
-import { Register } from ".";
 import { NavigationContainer } from "@react-navigation/native";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
+import React, { ReactElement } from "react";
+import { ThemeProvider } from "styled-components/native";
+import { Register } from ".";
+import theme from "../../global/styles/theme";
 
-const Providers: FC = ({ children }) => (
+jest.mock("expo-font");
+jest.mock("expo-asset");
+
+const Providers = ({ children }: { children: ReactElement }) => (
   <NavigationContainer>
     <ThemeProvider theme={theme}>{children}</ThemeProvider>
   </NavigationContainer>
